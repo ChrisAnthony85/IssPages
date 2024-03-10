@@ -11,7 +11,7 @@ class ISSPagesResourceTest {
     @Test
     void testHelloEndpoint() {
         given()
-                .when().get("/iss/test")
+                .when().get("/api/test")
                 .then()
                 .statusCode(200)
                 .body(is("Hello from RESTEasy Reactive"));
