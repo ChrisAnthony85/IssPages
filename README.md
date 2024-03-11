@@ -1,4 +1,10 @@
-# isspages
+# ISS Pages
+
+This application displays 0 to 10 places of interest in the form of mediawiki pages near the current location of the ISS.
+
+You can access the api in localhost:8080/api/iss/places for local server.
+
+---------------------------------
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 

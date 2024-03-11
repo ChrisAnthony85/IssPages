@@ -22,11 +22,11 @@ public class IssPlacesService {
     @Inject
     PlaceMapper placeMapper;
 
+    private static final String FORMAT = "json";
+    private static final String LIST = "geosearch";
+    private static final String ACTION = "query";
 
     public ResultsDTO getPlacesDefault() {
-        String format = "json";
-        String list = "geosearch";
-        String action = "query";
         int gsRadius = 10000;
         int gsLimit = 10;
         String gsProp = "country";
@@ -35,9 +35,7 @@ public class IssPlacesService {
         String latitude = issRoot.iss_position().latitude();
         String longitude = issRoot.iss_position().longitude();
 
-        GeoSearchResponseRoot root = geoSearchService.getPlaces(action, format, list,
-                latitude + "|" + longitude,
-                gsRadius, gsLimit, gsProp);
+        GeoSearchResponseRoot root = getGeosearch(FORMAT, LIST, ACTION, gsRadius, gsLimit, gsProp, latitude, longitude);
 
         ResultsDTO resultsDTO = new ResultsDTO();
         if(root.query() != null) {
@@ -46,10 +44,14 @@ public class IssPlacesService {
         return resultsDTO;
     }
 
+    private GeoSearchResponseRoot getGeosearch(String format, String list, String action, int gsRadius, int gsLimit, String gsProp, String latitude, String longitude) {
+        return geoSearchService.getPlaces(action, format, list,
+                latitude + "|" + longitude,
+                gsRadius, gsLimit, gsProp);
+    }
+
     public ResultsDTO getSamplePlaces() {
-        String format = "json";
-        String list = "geosearch";
-        String action = "query";
+
         int gsRadius = 10000;
         int gsLimit = 10;
         String gsProp = "country";
@@ -57,9 +59,7 @@ public class IssPlacesService {
         String latitude = "16.593372";
         String longitude = "120.316351";
 
-        GeoSearchResponseRoot root = geoSearchService.getPlaces(action, format, list,
-                latitude + "|" + longitude,
-                gsRadius, gsLimit, gsProp);
+        GeoSearchResponseRoot root = getGeosearch(FORMAT, LIST, ACTION, gsRadius, gsLimit, gsProp, latitude, longitude);
 
         ResultsDTO resultsDTO = new ResultsDTO();
         if(root.query() != null) {
@@ -73,7 +73,7 @@ public class IssPlacesService {
     }
 
     public GeoSearchResponseRoot getTestPlaces(String props, int limit, int radius, double latitude, double longitude) {
-        return geoSearchService.getPlaces("query", "json", "geosearch",
+        return geoSearchService.getPlaces(ACTION, FORMAT, LIST,
                 latitude + "|" + longitude,
                 radius, limit, props);
     }
