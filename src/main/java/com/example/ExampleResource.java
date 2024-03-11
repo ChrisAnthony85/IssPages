@@ -1,7 +1,9 @@
 package com.example;
 
+import com.example.model.dto.ApiResponse;
 import com.example.model.dto.ResultsDTO;
 import com.example.model.response.geosearch.GeoSearchResponseRoot;
+import com.example.model.response.iss.IssPosition;
 import com.example.model.response.iss.IssResponseRoot;
 import com.example.service.IssPlacesService;
 import jakarta.inject.Inject;
@@ -10,6 +12,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
+import org.jboss.resteasy.reactive.RestResponse;
 
 @Path("/test")
 public class ExampleResource {
@@ -29,6 +32,7 @@ public class ExampleResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public IssResponseRoot getIssLocation() {
+        IssResponseRoot root = issPlacesService.getIssLocation();
         return issPlacesService.getIssLocation();
     }
 
@@ -49,7 +53,7 @@ public class ExampleResource {
     @Path("sample")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ResultsDTO getSamplePlaces() {
+    public RestResponse<? extends ApiResponse> getSamplePlaces() {
         return issPlacesService.getSamplePlaces();
     }
 }
