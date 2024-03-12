@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "e524932e-cd4a-4c23-822d-0d185ec3d5ac",
+		"name": "ISS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2593676"
+	},
+	"item": [
+		{
+			"name": "Current Location",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"latitude\", jsonData.iss_position.latitude);\r",
+							"postman.setEnvironmentVariable(\"longitude\", jsonData.iss_position.longitude);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.open-notify.org/iss-now.json",
+					"protocol": "http",
+					"host": [
+						"api",
+						"open-notify",
+						"org"
+					],
+					"path": [
+						"iss-now.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeoSearch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://en.wikipedia.org/w/api.php?action=query&format=json&list=geosearch&formatversion=2&gsradius=10000&gslimit=100&gsprop=country&gscoord=16.5874441|120.3225367",
+					"protocol": "https",
+					"host": [
+						"en",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"w",
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "list",
+							"value": "geosearch"
+						},
+						{
+							"key": "formatversion",
+							"value": "2"
+						},
+						{
+							"key": "gscoord",
+							"value": "{{latitude}}|{{longitude}}",
+							"disabled": true
+						},
+						{
+							"key": "gsradius",
+							"value": "10000"
+						},
+						{
+							"key": "gslimit",
+							"value": "100"
+						},
+						{
+							"key": "gsprop",
+							"value": "country",
+							"disabled": true
+						},
+						{
+							"key": "gsprop",
+							"value": "country"
+						},
+						{
+							"key": "gscoord",
+							"value": "16.5874441|120.3225367"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeoSearch HardCoded lat,long",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://en.wikipedia.org/w/api.php?action=query&format=json&list=geosearch&formatversion=2&gsradius=10000&gslimit=100&gsprop=country&gscoord=16.5874441|120.3225367",
+					"protocol": "https",
+					"host": [
+						"en",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"w",
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "list",
+							"value": "geosearch"
+						},
+						{
+							"key": "formatversion",
+							"value": "2"
+						},
+						{
+							"key": "gscoord",
+							"value": "{{latitude}}|{{longitude}}",
+							"disabled": true
+						},
+						{
+							"key": "gsradius",
+							"value": "10000"
+						},
+						{
+							"key": "gslimit",
+							"value": "100"
+						},
+						{
+							"key": "gsprop",
+							"value": "country",
+							"disabled": true
+						},
+						{
+							"key": "gsprop",
+							"value": "country"
+						},
+						{
+							"key": "gscoord",
+							"value": "16.5874441|120.3225367"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "app - iss places",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/iss/places",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"iss",
+						"places"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "app - test hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/test/hello",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "app - test iss",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/test/iss",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test",
+						"iss"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "app - test places sample",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/test/sample",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test",
+						"sample"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
