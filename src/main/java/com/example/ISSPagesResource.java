@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.model.dto.ApiResponse;
 import com.example.service.IssPlacesService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -17,7 +18,7 @@ public class ISSPagesResource {
     @Path("iss/places")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public RestResponse getPlaces() {
+    public RestResponse<? extends ApiResponse> getPlaces() {
         return issPlacesService.getPlacesDefault();
     }
 }
