@@ -1,8 +1,13 @@
 # ISS Pages
 
-This application displays 0 to 10 places of interest in the form of mediawiki pages near the current location of the ISS.
+This application displays 0 to 10 places of interest in the form of mediawiki pages near the current location of the
+ISS.
 
-You can access the api in localhost:8080/api/iss/places for local server.
+You can access the api in <host url>/api/iss/places for local server.
+
+The Github workflow action for this can be seen in the actions tab of https://github.com/ChrisAnthony85/IssPages
+
+The Github Actions pipeline pushes the docker image to https://hub.docker.com/r/chrisbalcita/isspages
 
 ---------------------------------
 

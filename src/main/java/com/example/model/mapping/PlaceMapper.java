@@ -16,8 +16,8 @@ public abstract class PlaceMapper {
 
     @AfterMapping
     protected void convertCountryIsoName(GeoSearch place, @MappingTarget PlaceDTO placeDTO) {
-         placeDTO.setCountry(place.country() != null ?
-                 countryService.getCountryName(place.country()) : "NOT SPECIFIED");
+        placeDTO.setCountry(place.country() != null ?
+                countryService.getCountryName(place.country()) : "NOT SPECIFIED");
     }
 
     @Mapping(target = "latitude", source = "lat")

@@ -1,9 +1,7 @@
 package com.example;
 
 import com.example.model.dto.ApiResponse;
-import com.example.model.dto.ResultsDTO;
 import com.example.model.response.geosearch.GeoSearchResponseRoot;
-import com.example.model.response.iss.IssPosition;
 import com.example.model.response.iss.IssResponseRoot;
 import com.example.service.IssPlacesService;
 import jakarta.inject.Inject;
@@ -40,11 +38,11 @@ public class ExampleResource {
     @Path("places")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public GeoSearchResponseRoot getTestPlaces( @QueryParam("props") String props,
+    public GeoSearchResponseRoot getTestPlaces(@QueryParam("props") String props,
                                                @QueryParam("limit") int limit,
                                                @QueryParam("radius") int radius,
                                                @QueryParam("latitude") double latitude,
-                                               @QueryParam("longitude") double longitude ) {
+                                               @QueryParam("longitude") double longitude) {
         return issPlacesService.getTestPlaces(props, limit, radius, latitude, longitude);
 
     }

@@ -15,8 +15,8 @@ public class CountryService {
     @PostConstruct
     void init() {
         countryNamesMap = new HashMap<>();
-        String [] countryCodes = Locale.getISOCountries();
-        for(String isoCode: countryCodes) {
+        String[] countryCodes = Locale.getISOCountries();
+        for (String isoCode : countryCodes) {
             countryNamesMap.put(isoCode, new Locale("", isoCode).getDisplayCountry());
         }
     }

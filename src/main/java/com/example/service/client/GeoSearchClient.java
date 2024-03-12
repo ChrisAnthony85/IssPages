@@ -9,15 +9,6 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 @RegisterRestClient(configKey = "geosearch-api")
 public interface GeoSearchClient {
-    @GET
-    GeoSearchResponseRoot getPlaces(@QueryParam("action") String action,
-                                                  @QueryParam("format") String format,
-                                                  @QueryParam("list") String list,
-                                                  @QueryParam("gscoord") String gscoord,
-                                                  @QueryParam("gsradius") int gsradius,
-                                                  @QueryParam("gslimit") int gslimit,
-                                                  @QueryParam("gsprop") String gsprop );
-
     @ClientExceptionMapper
     static RuntimeException toException(Response response) {
         if (response.getStatus() >= 500) {
@@ -27,4 +18,13 @@ public interface GeoSearchClient {
         }
         return null;
     }
+
+    @GET
+    GeoSearchResponseRoot getPlaces(@QueryParam("action") String action,
+                                    @QueryParam("format") String format,
+                                    @QueryParam("list") String list,
+                                    @QueryParam("gscoord") String gscoord,
+                                    @QueryParam("gsradius") int gsradius,
+                                    @QueryParam("gslimit") int gslimit,
+                                    @QueryParam("gsprop") String gsprop);
 }

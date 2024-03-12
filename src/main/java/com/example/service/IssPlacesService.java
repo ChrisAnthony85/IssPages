@@ -16,18 +16,15 @@ import org.jboss.resteasy.reactive.RestResponse;
 @ApplicationScoped
 public class IssPlacesService {
 
-    @RestClient
-    GeoSearchClient geoSearchClient;
-
-    @RestClient
-    IssClient issClient;
-
-    @Inject
-    PlaceMapper placeMapper;
-
     private static final String FORMAT = "json";
     private static final String LIST = "geosearch";
     private static final String ACTION = "query";
+    @RestClient
+    GeoSearchClient geoSearchClient;
+    @RestClient
+    IssClient issClient;
+    @Inject
+    PlaceMapper placeMapper;
 
     public RestResponse<? extends ApiResponse> getPlacesDefault() {
         int gsRadius = 10000;
@@ -47,7 +44,7 @@ public class IssPlacesService {
                 resultsDTO.setResults(placeMapper.toPlaceDtoList(root.query().geosearch()));
             }
             return RestResponse.ResponseBuilder.ok(resultsDTO).build();
-        } catch(RuntimeException exception) {
+        } catch (RuntimeException exception) {
             Error error = new Error("ERROR", 504, exception.getMessage());
             return RestResponse.ResponseBuilder.ok(error).status(504).build();
         }
@@ -76,11 +73,11 @@ public class IssPlacesService {
                     ACTION, gsRadius, gsLimit, gsProp, latitude, longitude);
 
             ResultsDTO resultsDTO = new ResultsDTO();
-            if(root.query() != null) {
+            if (root.query() != null) {
                 resultsDTO.setResults(placeMapper.toPlaceDtoList(root.query().geosearch()));
             }
             return RestResponse.ResponseBuilder.ok(resultsDTO).build();
-        } catch(RuntimeException exception) {
+        } catch (RuntimeException exception) {
             Error error = new Error("ERROR", 504, exception.getMessage());
             return RestResponse.ResponseBuilder.ok(error).status(504).build();
         }

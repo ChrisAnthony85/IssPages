@@ -9,9 +9,6 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 @RegisterRestClient(configKey = "iss-api")
 public interface IssClient {
 
-    @GET
-    IssResponseRoot getIssLocation();
-
     @ClientExceptionMapper
     static RuntimeException toException(Response response) {
         if (response.getStatus() >= 500) {
@@ -19,4 +16,7 @@ public interface IssClient {
         }
         return null;
     }
+
+    @GET
+    IssResponseRoot getIssLocation();
 }
