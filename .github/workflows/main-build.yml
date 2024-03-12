@@ -15,7 +15,7 @@ jobs:
         run: mvn -v
 
       - name: java -v
-        run: java -v
+        run: java -version
 
       - name: Maven build
         run: mvn package
