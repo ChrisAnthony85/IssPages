@@ -8,12 +8,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set docker image name env
-        run: echo ::set-env name=DOCKER_IMAGE_NAME::chrisbalcita/isspages
-
-      - name: Set docker image tag env
-        run: echo ::set-env name=DOCKER_TAG_VERSION::$(echo $GITHUB_RUN_NUMBER)
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
