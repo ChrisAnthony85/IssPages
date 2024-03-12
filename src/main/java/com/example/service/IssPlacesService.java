@@ -6,8 +6,8 @@ import com.example.model.dto.ResultsDTO;
 import com.example.model.mapping.PlaceMapper;
 import com.example.model.response.geosearch.GeoSearchResponseRoot;
 import com.example.model.response.iss.IssResponseRoot;
-import com.example.service.client.GeoSearchService;
-import com.example.service.client.IssService;
+import com.example.service.client.GeoSearchClient;
+import com.example.service.client.IssClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -17,10 +17,10 @@ import org.jboss.resteasy.reactive.RestResponse;
 public class IssPlacesService {
 
     @RestClient
-    GeoSearchService geoSearchService;
+    GeoSearchClient geoSearchClient;
 
     @RestClient
-    IssService issService;
+    IssClient issClient;
 
     @Inject
     PlaceMapper placeMapper;
@@ -35,8 +35,7 @@ public class IssPlacesService {
         String gsProp = "country";
 
         try {
-//            RestResponse<IssResponseRoot> issResponse = issService.getIssLocation();
-            IssResponseRoot issRoot = issService.getIssLocation();
+            IssResponseRoot issRoot = issClient.getIssLocation();
             String latitude = issRoot.iss_position().latitude();
             String longitude = issRoot.iss_position().longitude();
 
@@ -55,11 +54,11 @@ public class IssPlacesService {
     }
 
     public IssResponseRoot getIssLocation() {
-        return issService.getIssLocation();
+        return issClient.getIssLocation();
     }
 
     private GeoSearchResponseRoot getGeosearch(String format, String list, String action, int gsRadius, int gsLimit, String gsProp, String latitude, String longitude) {
-        return geoSearchService.getPlaces(action, format, list,
+        return geoSearchClient.getPlaces(action, format, list,
                 latitude + "|" + longitude,
                 gsRadius, gsLimit, gsProp);
     }
@@ -90,7 +89,7 @@ public class IssPlacesService {
 
 
     public GeoSearchResponseRoot getTestPlaces(String props, int limit, int radius, double latitude, double longitude) {
-        return geoSearchService.getPlaces(ACTION, FORMAT, LIST,
+        return geoSearchClient.getPlaces(ACTION, FORMAT, LIST,
                 latitude + "|" + longitude,
                 radius, limit, props);
     }

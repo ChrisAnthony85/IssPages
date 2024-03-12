@@ -6,10 +6,9 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import org.jboss.resteasy.reactive.RestResponse;
 
 @RegisterRestClient(configKey = "geosearch-api")
-public interface GeoSearchService {
+public interface GeoSearchClient {
     @GET
     GeoSearchResponseRoot getPlaces(@QueryParam("action") String action,
                                                   @QueryParam("format") String format,

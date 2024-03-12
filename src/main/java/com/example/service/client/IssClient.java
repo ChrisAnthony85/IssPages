@@ -5,10 +5,9 @@ import io.quarkus.rest.client.reactive.ClientExceptionMapper;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import org.jboss.resteasy.reactive.RestResponse;
 
 @RegisterRestClient(configKey = "iss-api")
-public interface IssService {
+public interface IssClient {
 
     @GET
     IssResponseRoot getIssLocation();
