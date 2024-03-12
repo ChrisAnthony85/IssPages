@@ -23,8 +23,8 @@ jobs:
       - name: Build and push to Docker Hub
         uses: docker/build-push-action@v5
         with:
-          context: ./src/main/docker
-          file: ./Dockerfile
+          context: .
+          file: ./src/main/docker/Dockerfile.native
           push: true
           tags: |
             chrisbalcita/isspages:latest
