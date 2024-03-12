@@ -11,6 +11,12 @@ jobs:
 #      - name: mvnw permission
 #        run: chmod +x mvnw
 
+      - name: mvn -v
+        run: mvn -v
+
+      - name: java -v
+        run: java -v
+
       - name: Maven build
         run: mvn package
 
