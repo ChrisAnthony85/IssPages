@@ -22,7 +22,7 @@ jobs:
         run: java -version
 
       - name: mvnw permission
-        run: chmod +x
+        run: chmod +x mvnw
 
       - name: Maven build
         run: /mvnw package
