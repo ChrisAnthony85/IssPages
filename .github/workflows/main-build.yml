@@ -5,11 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Build native Quarkus app
     steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
       - name: Checkout
         uses: actions/checkout@v2
-
-#      - name: mvnw permission
-#        run: chmod +x mvnw
 
       - name: mvn -v
         run: mvn -v
@@ -17,8 +21,11 @@ jobs:
       - name: java -v
         run: java -version
 
+      - name: mvnw permission
+        run: chmod +x
+
       - name: Maven build
-        run: mvn package
+        run: /mvnw package
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
